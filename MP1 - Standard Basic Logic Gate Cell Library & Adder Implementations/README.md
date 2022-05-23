@@ -12,7 +12,7 @@ This machine problem introduces the approach to cell-based circuit design.
 ## Files
 * *ece425mp1.zip* contains the associated Cadence Virtuoso design files for MP1
 * *mp1_jrarndt2.pdf* is the MP1 Report submission
-* *MP1-SP22 is the provided MP1 documentation 
+* *MP1-SP22* is the provided MP1 documentation 
 
 ## Design Flow 
 **Schematic Design** -> **NC-Verilog Simulation & Verification** -> **Layout Design** -> **DRC** -> **Extract Layout** -> **LVS**
