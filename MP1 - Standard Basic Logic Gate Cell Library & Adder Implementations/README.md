@@ -1,0 +1,4 @@
+# MP1 - Standard Basic Logic Gate Cell Library & Adder Implementations
+
+## Introduction
+This machine problem will introduce cell-based circuit design. You will create a miniature cell library implementing several basic logic gates. Then, you will implement a full adder by plugging the cells together. This will give you a feel for the impact of individual cell design and multiple cell integration on the quality of the overall layout. The cells will form a library, which may be reused for MP2. This handout gives suggestions on how to design and arrange the cells, but you may be more creative if you like. Please note any original ideas you have tried in your hand in!
