@@ -37,7 +37,7 @@ The circuit schematics are constructed using an academically available (through 
 
 ### xor2 Design Considerations
 * *xor2* created using **EXACTLY** 10 transistors.
-* As shown below, logical equivalence of a 2-input XOR gate is achieved through the use of a *NOR2* gate and *AOI21* gate.
+* As shown below, logical equivalence of a 2-input *XOR* gate is achieved through the use of a *NOR2* gate and *AOI21* gate.
     * The output of the *NOR2* gate is a "third input" to the *AOI21* complex gate. 
 * In accordance with the previous discussion, all transistors are sized to achieve the effective drive strength equal to a minimum-sized NMOS transistor (i.e. effective witdth of 360 nm).
 * Derivations for the *AOI21* Common Euler Path & Stick Diagram are shown to assist in Layout Design.
