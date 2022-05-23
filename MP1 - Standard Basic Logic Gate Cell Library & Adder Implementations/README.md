@@ -33,12 +33,17 @@ The circuit schematics are constructed using an academically available (through 
 **Note:** ALL transistor lengths are kept minimum at 240 nm, as dicitaed by the process. 
 
 **RC Delay Model:** The RC delay model treats a transistor as a switch in series with a resistor. The *effective resistance* is the ratio of *V<sub>ds</sub>* to *I<sub>ds</sub>* averaged across the switching interval of interest.
-
 * A unit NMOS transistor is defined to have effective resistance *R*. The size of the unit transistor is arbitrary, but conventionally refers to a transistor with minimum length and minimum contacted diffusion width. Alternatively, it may refer to the width of the NMOS transistor in a minimum-sized inverter in a standard cell library.
 * An NMOS transistor of *k* times unit width has resistance *R/k* because it delivers *k* times as much current.
-* A unit PMOS transistor has greater resistance, generally in the range of *~2R*, because of its lower mobility.
+* A unit PMOS transistor has greater resistance, approximately in the range of *~2R*, because of its lower mobility.
 
+As explained in the section above, the resistance of a transistor is inversely proportional to its width, *k*. Therefore, the series combination of several transistors yields a *total effective width* according to the following relation: 1/W<sub>total</sub?> = 1/W<sub>A</sub> + 1/W<sub>B</sub> + ... 
 
+When expressed relative to the minimum transistor width, the *effective width* is also referred to as the *drive strength*. For example, a 1/2x drive strength NAND gate in our process would have two 360 nm NMOSes in series with an effective width of 360 nm / 2 = 180 nm.
+
+Further, because a PMOS transistor has about twice the resistance of an NMOS of the same size, the drive strength of any PMOS must be divided by two. For example, a 1/2x drive strength NAND gate would have two 360 nm PMOSes in parallel, each with effective width 180 nm or drive strength 1/2x.
+
+Note: Effective width is generally not affected by parallel connections, because transistors generally turn on one at a time. After the first transistor has turned on, it will finish driving the new output value before there is time for the second parallel transistor to switch. If their gates are connected together, however, they will switch at the same instant. In this case, they combine to form a single “super-transistor,” with the widths adding up. Little distinction is made between a single large transistor and an array of smaller transistors in parallel – a schematic diagram will simply specify a total effective width without showing any parallel connections.
 
 **Each cell should have drive strength equal to one minimum-size NMOS transistor, or effective width of 360 nm.**
 
