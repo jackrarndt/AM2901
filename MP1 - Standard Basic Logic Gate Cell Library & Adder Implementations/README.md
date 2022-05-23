@@ -37,7 +37,7 @@ The circuit schematics are constructed using an academically available (through 
 * An NMOS transistor of *k* times unit width has resistance *R/k* because it delivers *k* times as much current.
 * A unit PMOS transistor has greater resistance, approximately in the range of *~2R*, because of its lower mobility.
 
-As explained in the section above, the resistance of a transistor is inversely proportional to its width, *k*. Therefore, the series combination of several transistors yields a *total effective width* according to the following relation: 1/W<sub>total</sub?> = 1/W<sub>A</sub> + 1/W<sub>B</sub> + ... 
+As explained in the section above, the resistance of a transistor is inversely proportional to its width, *k*. Therefore, the series combination of several transistors yields a *total effective width* according to the following relation: 1/W<sub>total</sub> = 1/W<sub>A</sub> + 1/W<sub>B</sub> + ... 
 
 When expressed relative to the minimum transistor width, the *effective width* is also referred to as the *drive strength*. For example, a 1/2x drive strength NAND gate in our process would have two 360 nm NMOSes in series with an effective width of 360 nm / 2 = 180 nm.
 
