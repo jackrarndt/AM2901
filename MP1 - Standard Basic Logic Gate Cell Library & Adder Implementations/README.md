@@ -18,9 +18,11 @@ This machine problem introduces the approach to cell-based circuit design.
 **Schematic Design** -> **NC-Verilog Simulation & Verification** -> **Layout Design** -> **DRC** -> **Extract Layout** -> **LVS**
 
 ## Schematic Design
-The circuit schematics are constructed using an academically available (through MOSIS at the University of Southern California) manufacturing process from TSMC (Taiwan Semiconductor Manufacturing Corporation) using a design kit from NCSU (North Carolina State University). This will allow for drawing transistors with a 240 nm nominal gate length and 360 nm minimum width, corresponding to the state of the art around 1997.
+The circuit schematics are constructed using an academically available (through MOSIS at the University of Southern California) manufacturing process from TSMC (Taiwan Semiconductor Manufacturing Corporation) using a design kit from NCSU (North Carolina State University). This will allow for drawing transistors with a **240 nm nominal gate length** and **360 nm minimum width**, corresponding to the state of the art around 1997.
 
 **Library:** *NCSU_TechLib_tsmc03d*
+
+
 
 ### Transistor Sizing
 
