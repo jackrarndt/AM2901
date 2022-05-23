@@ -1,13 +1,12 @@
 # AMD AM2901 Microprocessor
 Custom VLSI Design of AMD AM2901 Microprocessor | Created by Jack Arndt for ECE 425 (Spring 2022) at the University of Illinois Urbana-Champaign
 
-Project Folders / Files
-* MP1 - Standard Basic Logic Gate Cell Library & Adder Implementations
-* MP2 - AMD AM2901
-* MP3 - Controller Module Automated Synthesis
+## Project Folders / Files
+* **MP1 - Standard Basic Logic Gate Cell Library & Adder Implementations**
+* **MP2 - AMD AM2901**
+* **MP3 - Controller Module Automated Synthesis**
 
-Academic Integrity
------
+## Academic Integrity
 Please review the University of Illinois Student Code before starting,
 particularly all subsections of Article 1, Part 4 Academic Integrity and Procedure [here](https://studentcode.illinois.edu/article1/part4/1-401/).
 
@@ -55,8 +54,7 @@ particularly all subsections of Article 1, Part 4 Academic Integrity and Procedu
 
 (2)	Academic interference also includes acts in which the student committing the infraction personally benefits from the interference, regardless of the effect on other students.
 
-Legal
------
+## Legal
 Permission to use, copy, modify, and distribute this software and its
 documentation for any purpose, without fee, and without written agreement is
 hereby granted, provided that the above copyright notice and the following
