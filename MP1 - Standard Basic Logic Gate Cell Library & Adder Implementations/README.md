@@ -9,4 +9,8 @@ This machine problem introduces the approach to cell-based circuit design.
 
 **Note**: These cells will form a library, which will be reused for subsequent MPs. 
 
+## Design Flow 
+**Schematic Design** -> **NC-Verilog Simulation & Verification** -> **Layout Design** -> **DRC** -> **Extract Layout** -> **LVS**
+
+
 
