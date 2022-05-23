@@ -36,6 +36,7 @@ The circuit schematics are constructed using an academically available (through 
 
 
 ### xor2 Design Considerations
+* *xor2* logic gate constructed using **exactly** 10 transistors 
 ![MP1-xor2](https://github.com/jackrarndt/AM2901/blob/main/MP1%20-%20Standard%20Basic%20Logic%20Gate%20Cell%20Library%20%26%20Adder%20Implementations/Additional%20Figures/MP1-xor2.jpg)
 ## Verification
 
