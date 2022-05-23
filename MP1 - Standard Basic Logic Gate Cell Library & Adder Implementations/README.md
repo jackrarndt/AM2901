@@ -55,17 +55,27 @@ Further, because a PMOS transistor has about twice the resistance of an NMOS of 
 * Derivations for the *AOI21* Common Euler Path & Stick Diagram are shown to assist in Layout Design.
 ![MP1-xor2](https://github.com/jackrarndt/AM2901/blob/main/MP1%20-%20Standard%20Basic%20Logic%20Gate%20Cell%20Library%20%26%20Adder%20Implementations/Additional%20Figures/MP1-xor2.jpg)
 
-## Verification
+## NC-Verilog Simulation & Verification
+Every step of circuit design is typically followed by an automated correctness check. Before starting layout, we will ensure that the schematics are correct using Cadence’s NC-Verilog simulator. The simulator will apply a series of inputs to a virtual version of each circuit and allow you to see its internals in action. Verilog is used for logic verification, so it will produce only 1’s and 0’s and consider the overall topology of each circuit’s transistors. More precise physical simulation is used at later stages of the design process. As we are putting the smallest pieces of logic through the most approximate simulator, we will get our results instantaneously.
 
 ## Layout Design
+### Cell Characteristics & Guidelines
+1. All wires and polysilicon should be minimum width. (This is the default width when you activate the path tool.) VDD/GND may be wider if it simplifies following the design rules.
+2. Cells should have a ground (gnd!) wire along the bottom (the x axis) and a vdd! wire along the top, (example at y = 6.6 um), both in metal2. These coordinates refer to the centerline of the wire.
+3. Each cell should each have one n-well. The n-well and substrate should both have body contacts (use the layout cells ptap and ntap in NCSU_TechLib_tsmc03d).
+4. Transistor gates should be vertical. Gate poly must be 0.24u (1/2 x min poly spacing) from the power/ground wire centerlines so cells can be joined edge-to-edge (abutted).
+5. Input pins should be on metal1 with no obstructions to the left edge of the cell. Outputs should be on metal1 with a clear path to the right edge. It will be easier to route between cells if top/bottom connections between cells are possible as well. Keeping inputs and outputs aligned horizontally simplifies the process of connecting cells.
+6. Wires in metal2 should be all horizontal and used sparingly. Metal3 may not be used for now.
+7. Poly jumpers are not allowed: every poly wire should connect to metal1 exactly once.
 
-### Cell Characteristics
+## Adder Construction
+* *half_adder* cell constructed from XOR gate and NAND gate (produces inverted carry output) from created library.
+* *full_adder* cell constructed from two *half_adder* cells and an additional NAND gate.
+* *8-bit carry ripple adder* cell constructed from eight *full_adder* cells. 
 
+This process is similar to creating the cell library, except existing created cells are used rather than transistors.
 
-
-
-
-
+**Note:** *metal3* layer is typically resevered for top-level connections. In this case, the 8-bit adder.  
 
 ## MP1 Report
 The MP1 Report is organized in the following order:
