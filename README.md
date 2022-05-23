@@ -1,8 +1,12 @@
-# AM2901
+# AMD AM2901 Microprocessor
 Custom VLSI Design of AMD AM2901 Microprocessor | Created by Jack Arndt for ECE 425 (Spring 2022) at the University of Illinois Urbana-Champaign
 
+Project Folders / Files
+* MP1 - Standard Basic Logic Gate Cell Library & Adder Implementations
+* MP2 - AMD AM2901
+* MP3 - Controller Module Automated Synthesis
 
-Academic Inetgrity
+Academic Integrity
 -----
 Please review the University of Illinois Student Code before starting,
 particularly all subsections of Article 1, Part 4 Academic Integrity and Procedure [here](https://studentcode.illinois.edu/article1/part4/1-401/).
