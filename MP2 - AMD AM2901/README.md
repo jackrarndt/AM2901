@@ -51,7 +51,7 @@ The MP2 Final Report is organized in the following order:
     * *regbit*
     * *datapath*
 3. LVS result for the top-level *datapath* (with “Join Nets with Same Name” turned off and strict NCSU comparison rules, but unchecked “Compare FET parameters”).
-4. So far, you have finished the hand-made part of you AM2901 microprocessor. Are there any difficulties you have encountered in your design and layout? List three most important ones and simply describe what they are and how you solved them.*
+4. So far, you have finished the hand-made part of you AM2901 microprocessor. Are there any difficulties you have encountered in your design and layout? List three most important ones and simply describe what they are and how you solved them.
 5. Briefly answer the following questions:
     * What is the distance between the vdd and gnd in your layout? Why do you set this value? 
     * Some gates are sized to be larger than the minimum size (e.g., I55 and I56 in the regfile or I0 and I1 in the logic). Take one example to explain why it has to be set larger than the minimum size? (Hint: different examples may have different reasons.)
