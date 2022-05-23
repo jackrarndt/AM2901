@@ -30,16 +30,23 @@ The circuit schematics are constructed using an academically available (through 
 * **xor2**
 
 ### Transistor Sizing Discussion
+**Note:** ALL transistor lengths are kept minimum at 240 nm, as dicitaed by the process. 
+
+**RC Delay Model:** The RC delay model treats a transistor as a switch in series with a resistor. The *effective resistance* is the ratio of *V<sub>ds</sub>* to *I<sub>ds</sub>* averaged across the switching interval of interest.
+
+* A unit NMOS transistor is defined to have effective resistance *R*. The size of the unit transistor is arbitrary, but conventionally refers to a transistor with minimum length and minimum contacted diffusion width. Alternatively, it may refer to the width of the NMOS transistor in a minimum-sized inverter in a standard cell library.
+* An NMOS transistor of *k* times unit width has resistance *R/k* because it delivers *k* times as much current.
+* A unit PMOS transistor has greater resistance, generally in the range of *~2R*, because of its lower mobility.
 
 
 
-
+**Each cell should have drive strength equal to one minimum-size NMOS transistor, or effective width of 360 nm.**
 
 ### xor2 Design Considerations
 * *xor2* created using **EXACTLY** 10 transistors.
 * As shown below, logical equivalence of a 2-input *XOR* gate is achieved through the use of a *NOR2* gate and *AOI21* gate.
     * The output of the *NOR2* gate is a "third input" to the *AOI21* complex gate. 
-* In accordance with the previous discussion, all transistors are sized to achieve the effective drive strength equal to a minimum-sized NMOS transistor (i.e. effective witdth of 360 nm).
+* In accordance with the previous discussion, all transistors are sized to achieve the effective drive strength equal to a minimum-sized NMOS transistor (i.e. effective width of 360 nm).
 * Derivations for the *AOI21* Common Euler Path & Stick Diagram are shown to assist in Layout Design.
 ![MP1-xor2](https://github.com/jackrarndt/AM2901/blob/main/MP1%20-%20Standard%20Basic%20Logic%20Gate%20Cell%20Library%20%26%20Adder%20Implementations/Additional%20Figures/MP1-xor2.jpg)
 
