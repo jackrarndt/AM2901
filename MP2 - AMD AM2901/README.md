@@ -12,6 +12,7 @@ The AM2901 was the heart of many minicomputers in the late 1970s. Containing a r
 ## MP2 Files
 * *ece425mp2.zip* contains the associated Cadence Virtuoso design files for MP2.
 * *mp2_checkpoint_jrarndt2.pdf* and *mp2_finalreport_jrarndt2.pdf* constitute the MP2 Report submission.
+* *ECE425-MP2Presentation_jrarndt2.pptx* is a Powerpoint Presentation outlining the overall system design considerations and tradeoffs. 
 * *MP2-SP22* is the provided MP2 documentation. 
 
 
