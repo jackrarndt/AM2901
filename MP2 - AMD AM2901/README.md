@@ -31,6 +31,27 @@ The chip is composed of:
 * **Additional Components**
     * Multiplexers
 
+A number of multiplexers allow data to be routed from one component to another. The "triangles" represent tri-state output drivers, electrical components, which we will ignore for now. To help navigate through the diagram's spaghetti, the tables shown below captures the multiplexer connections, with each input listed from top to bottom (the order is insignificant) and bit 3 down to bit 0 from left to right (high-order to low-order). Note that each column of these tables represents a single mux. 
+
+![AM2901-MUXTables](https://github.com/jackrarndt/AM2901/blob/main/MP2%20-%20AMD%20AM2901/Additional%20Figures/AM2901-MUXTables.png)
+
+
+
+
+This section mainly indicates Muxes functions. From this section, we can see that three 3-in Muxes, one 4-in Mux, and one 2-in Mux are needed 4 times in the whole datapath. This means that the datapath consists of four bitslices, each bitslice unit has 5 Muxes: three 3-in Mux, one 4-in Mux, one 2-in Mux. (If we can recall 8-bit adder in MP1, the datapath here is similar to 8-bit adder while the bitslice here is similar to a full adder. 8-bit adder consists of eight full adder unit. Similarly, the datapath here will consist of 4 bitslice unit.)
+
+
+
+
+
+You might also need to use additional muxes, for example, inside the ALU. Finally, Page 4 (also from AMD) lists the datapath functionality controlled by the muxes in terms of the inputs you are given. You will need to generate mux control inputs from i<8:0>. For more information, see The Am2900 Family Data Book, in particular pages 2-002 to 2-007. It can be found on the course website’s Machine Problem page.
+
+
+
+
+
+
+
 ## Layout
 In MP1, we implemented an 8-bit adder. Similarly, our *bitslice* cell will be implemented as "rows of cells" with data "flowing" from left to right. The height of this structure is the *bit pitch*, and it is a major factor in determining the overall area of the design. Another factor to consider is the length of each row. 
 
@@ -47,7 +68,7 @@ Area is a good indicator of power and general efficiency. A tight final layout w
 6. Reduce, reuse, and recycle the cells that have already been implemented.
 7. To minimize area, if you could add an input pin instead of adding a gate, do it. 
 
-### Additiona Class Layout Rules
+### Additional Class Layout Rules
 In addition to the guidelines and DRC rules, there are some class layout rules that you will be penalized for violating:
 1. ***No connect by name.*** You must connect power and ground wires together in the layout. Likewise for all the control signals. (This only applies to the top-level *datapath* cell – you will lose too much space if you tie VDD and GND in every register file cell!)
 2. ***Poly routes.*** Do not use polysilicon routes longer than 10 um, measured from contact to terminus. Every polysilicon polygon should contain a transistor gate. Metal contacting poly should only connect to transistor source/drains. Transistor gates should be vertical.
