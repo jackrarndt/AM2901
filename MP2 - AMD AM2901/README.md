@@ -93,7 +93,9 @@ Our RTL is split into two files:
 * *controller.v*: describes the control unit
 * *Am2901.v*: integrates the datapath with the control unit
 
-### RTL Code Boolean Logic Derivations
+### controller.v Control Signals with Boolean Logic Expressions
+![AM2901-controller_v](https://github.com/jackrarndt/AM2901/blob/main/MP2%20-%20AMD%20AM2901/Additional%20Figures/AM2901-controller_v.png)
+These control signals were created
 
 
 
