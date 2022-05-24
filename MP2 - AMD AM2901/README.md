@@ -24,11 +24,11 @@ The AM2901 chip design aims to teach students to first analyze chips from top-do
 The block diagram shown above is reproduced from *The AM2900 Family Data Book*, the orginial reference on the AM2901 from AMD.
 
 The chip is composed of:
-* Main Components
+* **Main Components**
     * Register File, or "16x4 bit 2-port RAM"
     * Q-Register
     * ALU
-* Additional Components
+* **Additional Components**
     * Multiplexers
 
 
