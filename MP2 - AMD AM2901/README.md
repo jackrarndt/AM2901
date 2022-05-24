@@ -52,9 +52,9 @@ We begin by building the logic schematics for all the necessary components of th
 
 There are several basic rules that will keep our circuit design “reasonable” in physical considerations, beyond ensuring the basic Boolean logic functionality. Two will affect our logic gates and one is common sense:
 
-**Rule 1.** *Complementary static CMOS*: Our logic must be composed of logic gates, each consisting of an NMOS network connected to ground and a PMOS network connected to the supply voltage. At any time, either the NMOS or else the PMOS network must be conducting, no matter what inputs are given to the gate. (No transmission gates!)
-**Rule 2.** *Fan-in*: No path from a gate output to power or ground may be more than 3 transistors long. This improves reliability by limiting the body effect near the output node, and also ensures we do not add long chains of bulky transistors.
-**Rule 3.** *Combinational logic only*: Do not introduce feedback loops besides the ones given.
+* **Rule 1.** *Complementary static CMOS*: Our logic must be composed of logic gates, each consisting of an NMOS network connected to ground and a PMOS network connected to the supply voltage. At any time, either the NMOS or else the PMOS network must be conducting, no matter what inputs are given to the gate. (No transmission gates!)
+* **Rule 2.** *Fan-in*: No path from a gate output to power or ground may be more than 3 transistors long. This improves reliability by limiting the body effect near the output node, and also ensures we do not add long chains of bulky transistors.
+* **Rule 3.** *Combinational logic only*: Do not introduce feedback loops besides the ones given.
 
 Each logic gate (according to the definition of Rule 1) is to be placed in its own cell. Therefore, gate cells will contain only transistors, and all other cells will contain only sub-cells but no individual transistors, as to maintain the hierarchical structure of the design. Input pins may need to be added to our cells, for example, MUX select inputs. We will write Verilog code to generate these inputs once the schematics are finished. **It is not wise to implement logic to generate a function when one could simply add an input pin!** For example, if we need the complementary signal of pin *p*, instead of adding an inverter in the datapath, we can also choose to add an input pin *p’*. **This way, we can greatly reduce the number of gates in our datapath, which means smaller area for the overall layout!**
 
