@@ -31,16 +31,30 @@ The chip is composed of:
 * **Additional Components**
     * Multiplexers
 
+## Layout
+In MP1, we implemented an 8-bit adder. Similarly, our *bitslice* cell will be implemented as "rows of cells" with data "flowing" from left to right. The height of this structure is the *bit pitch*, and it is a major factor in determining the overall area of the design. Another factor to consider is the length of each row. 
 
+Area is a good indicator of power and general efficiency. A tight final layout will require prior planning and proper prioritization. It is beneficial to estimate which component will take the most area in the complete design, find the most efficient implementation of that specific piece and, if possible, reduce the bit pitch. Try to fit the other cells to that bit pitch, even if some additional area is wasted (as long as it’s less than the savings from making the larger structure smaller). 
 
+**Note:** Before integrating the cells into a final layout, it is advised to sketch how they should fit together using their known sizes. The bit pitch may be brought as low as 10 um before the memory is most compact.
 
+### General Guidelines
+1. The memory array will take up a lot of space.
+2. The smallest layout is usually one, which packs the control wires tightest.
+3. Control wires should go on metal 3, data operands on metal 2, and metal 1 should be for transistor terminals, with few long-distance signal routes. Keep **metal 3 routes vertical and metal 2 horizontal.**
+4. Good layouts devote less space to wires and more to transistors.
+5. Get a rough draft that works before trying to optimize.
+6. Reduce, reuse, and recycle the cells that have already been implemented.
+7. To minimize area, if you could add an input pin instead of adding a gate, do it. 
 
+### Additiona Class Layout Rules
+In addition to the guidelines and DRC rules, there are some class layout rules that you will be penalized for violating:
+1. ***No connect by name.*** You must connect power and ground wires together in the layout. Likewise for all the control signals. (This only applies to the top-level *datapath* cell – you will lose too much space if you tie VDD and GND in every register file cell!)
+2. ***Poly routes.*** Do not use polysilicon routes longer than 10 um, measured from contact to terminus. Every polysilicon polygon should contain a transistor gate. Metal contacting poly should only connect to transistor source/drains. Transistor gates should be vertical.
+3. ***Verified layout for every cell.*** Layout the smallest units first, check it, and then move on. The smoothest design flow finishes first. Try not to find all the little bugs in the big circuit.
+4. ***Body contacts in every cell.*** Find room and add a ptap and an ntap in every cell.
 
-
-
-
-
-
+**Note:** For simplification purposes, **we will uniformly size every PMOS transistor to 720 nm and every NMOS transistor to 360 nm**. With regards to the objectives of this MP, we are more concerned about overall functionality rather than timing and delay implications. When running LVS, uncheck *"Compare FET parameters"*. 
 
 ## MP2 Checkpoint
 The MP2 Checkpoint is organized in the following order:
@@ -49,12 +63,11 @@ The MP2 Checkpoint is organized in the following order:
     * *latch*
     * *ALU*
     * *logic* part of ALU
-2. *Eight* ALU functions with Implementation
+2. List the *eight* ALU functions and explain how you implmented each of them. 
 3. Top-Level Schematic Printouts
     * *bitslice*
     * *datapath*
-4. Simulation waveform from SimVision showing **only the pins** of the top2901 instance executing
-the given test program
+4. Simulation waveform from SimVision showing **only the pins** of the top2901 instance executing the given test program
 5. Simulation comparison result of the *top2901* instance
 
 ## MP2 Final Report
