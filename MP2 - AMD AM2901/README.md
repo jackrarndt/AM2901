@@ -105,7 +105,7 @@ There are three major components to our Verilog code:
 2. “RTL” code: written by hand and expresses functionality we “know will happen”
 3. “Stimulus” code: drives the input pins according to a test program
 
-**Note:** Debugging latches will be easier if you select *Edit => Preferences* in SimVision, open the preferences for Verilog, and select *Show Strength* and *Show colors by strength*. Signals driven by the bitcell will then appear light blue, so you can see when a latch is being read versus written.
+**Note:** Debugging latches will be easier if we select *Edit => Preferences* in SimVision, open the preferences for Verilog, and select *Show Strength* and *Show colors by strength*. Signals driven by the bitcell will then appear light blue, so we can see when a latch is being read versus written.
 
 Besides only caring about the falling edges, we also will ignore mismatches on the carry signal when we're not performing addition or subtraction. (The AMD book specifies exactly what the carry signals do under all conditions, but we don't need to be that detailed. We might get different results depending which operands we negate to get each logical function.)
 
