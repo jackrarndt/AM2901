@@ -18,7 +18,18 @@ The AM2901 was the heart of many minicomputers in the late 1970s. Containing a r
 ## Logic Design
 The AM2901 chip design aims to teach students to first analyze chips from top-down point of view and then construct circuit design from bottom-up point of view. We will learn to decompose the chip layer by layer, understand the logic connections in each layer, and narrow down our attention on one signal cell (component) design. After analyzing the chip and specify on each single component, we will start drawing the schematics of each component to make it a cohesive, functional unit. 
 
+### Architecture
 ![AM2901-BlockDiagram](https://github.com/jackrarndt/AM2901/blob/main/MP2%20-%20AMD%20AM2901/Additional%20Figures/AM2901-BlockDiagram.png)
+
+The block diagram shown above is reproduced from *The AM2900 Family Data Book*, the orginial reference on the AM2901 from AMD.
+
+The chip is composed of:
+* Main Components
+    * Register File, or "16x4 bit 2-port RAM"
+    * Q-Register
+    * ALU
+* Additional Components
+    * Multiplexers
 
 
 
