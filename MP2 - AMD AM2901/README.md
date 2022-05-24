@@ -60,7 +60,7 @@ Each logic gate (according to the definition of Rule 1) is to be placed in its o
 
 ### Memory Schematics
 
-![AM2901-latch]()
+![AM2901-latch](https://github.com/jackrarndt/AM2901/blob/main/MP2%20-%20AMD%20AM2901/Additional%20Figures/AM2901-latch.png)
 ### Carry Chain
 
 ### RTL Code
