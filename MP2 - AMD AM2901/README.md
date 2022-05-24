@@ -59,8 +59,19 @@ There are several basic rules that will keep our circuit design “reasonable”
 Each logic gate (according to the definition of Rule 1) is to be placed in its own cell. Therefore, gate cells will contain only transistors, and all other cells will contain only sub-cells but no individual transistors, as to maintain the hierarchical structure of the design. Input pins may need to be added to our cells, for example, MUX select inputs. We will write Verilog code to generate these inputs once the schematics are finished. **It is not wise to implement logic to generate a function when one could simply add an input pin!** For example, if we need the complementary signal of pin *p*, instead of adding an inverter in the datapath, we can also choose to add an input pin *p’*. **This way, we can greatly reduce the number of gates in our datapath, which means smaller area for the overall layout!**
 
 ### Memory Schematics
-
+Although complementary CMOS flip-flops and memory arrays are possible, they are never used. Simpler alternatives use *ratioed logic*: rather than requiring exactly one path to power or ground from the data-storage node, allow either one or two. Consider this circuit below:
 ![AM2901-latch](https://github.com/jackrarndt/AM2901/blob/main/MP2%20-%20AMD%20AM2901/Additional%20Figures/AM2901-latch.png)
+
+Inverter *A* is always driven by inverter *B*. However, if the pass-gate *C* is turned on, it will be driven by both *B* and *C*. This may result in a direct path from power to ground as *B* and *C* form a voltage divider. If *C* has much less resistance than B, however, the voltage divider will always drive *A*’s input close to VDD or ground. Inverter *A*, in turn, sends a perfect VDD-or-ground (*rail-to-rail*) output to *B*, which also flips, shutting off the power-to-ground short circuit. The cross-coupled inverter structure, which we will call a *bitcell*, is at the heart of “static” computer memories.
+
+**Note:** There is an extra rule to follow within the *regfile* and *latch* cells:
+* **Rule 4.** *Drive ratio*: The bitcell must be driven with at least 720 nm effective width to perform a write. To simplify the MP, the sizing has already been done for us. Therfore, what we need to do is the following: First, do not delete the inverters already existing in the given schematic and also do not alter the sizes of them. Second, when we add an inverter to our design, use the a minimum-sized inverter, with W<sub>n</sub> = 0.36 um and W<sub>p</sub> = 0.72 um.
+
+Timing is important in any system containing feedback. The *bitcell* cell contains a Verilog delay command that prevents the RAM input from racing through the entire datapath when the transmission gates turn on and off. To take advantage of the delay, we will use one terminal of the bitcell as an input and the other as an output. 
+
+As for the clock inputs of RAM and also Q register, the following is quoted from *The AM2900 Family Data Book*. *"The Q register and register stack outputs change on the clock LOW-to-HIGH transition. The clock LOW time is internally the write enable to the 16x4 RAM which compromises the master latches of the register stack. While the clock is LOW, the slave latches on the RAM outputs are closed, storing the data previously on the RAM outputs. This allows synchronous master-slave operation of the register stack."* To put it simply, the master latches of both RAM and Q register should be open at clock LOW, while the slave latches should be open at clock HIGH.
+
+
 ### Carry Chain
 
 ### RTL Code
