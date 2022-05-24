@@ -37,15 +37,31 @@ A number of multiplexers allow data to be routed from one component to another. 
 
 The plethora of available data routes allowed a team of AM2901’s to perform a computation with the outside assistance of extra chips, then load the result into the Q-Register and send it serially to slower I/O logic while performing the next computation.
 
-The chain of components, which operate on four bits of data is called the *datapath*. Each of these comprises four single-bit components. There are also several individual "decode" blocks, which do not directly handle data. They serve to reduce the number of pins connecting the AM2901 to the outside world. Note that pin count is a **major factor** in the cost of any microchip. In this MP,we will only implement the *datapath*, and leave everything else for MP3. The part of the *datapath* operating on a single bit is called a *bitslice*. We will design and layout a single bitslice, and then combine four *bitslices* to form a complete *datapath*.
+The chain of components, which operate on four bits of data is called the *datapath*. Each of these comprises four single-bit components. There are also several individual "decode" blocks, which do not directly handle data. They serve to reduce the number of pins connecting the AM2901 to the outside world. Note that pin count is a **major factor** in the cost of any microchip. In this MP, we will only implement the *datapath*, and leave everything else for MP3. The part of the *datapath* operating on a single bit is called a *bitslice*. We will design and layout a single bitslice, and then combine four *bitslices* to form a complete *datapath*.
 
 From the tables above, we can see that three 3-in MUXes, one 4-in MUX, and one 2-in MUX are needed 4 times in the whole *datapath*, corresponding to four *bitslices*. Therfore, each *bitslice* unit has 5 MUXes: three 3-in MUXes, one 4-in MUXes, one 2-in MUXes. Recalling the 8-bit adder in MP1, the *datapath* here is similar to the 8-bit adder, while the *bitslice* here is similar to a full adder. An 8-bit adder consists of eight full adder units. Similarly, the *datapath* here will consist of 4 *bitslice* units.
 
 **Note:** Additional MUXes might be necessary, for example, inside the *ALU*. 
 
-Finally, the tables listed below (also from AMD) lists the *datapath* functionality controlled by the MUXes in terms of the inputs given. Therefore, we will need to generate MUX control signal inputs from *i<8:0>*, which we will derive in the next section. For more information, see *The AM2900 Family Data Book*, in particular pages 2-002 to 2-007. 
+Finally, the tables listed below (also from AMD) lists the *datapath* functionality controlled by the MUXes in terms of the inputs given. Therefore, we will need to generate MUX control signal inputs from *i<8:0>*, which we will derive using Boolean algebra in a later section. For more information, see *The AM2900 Family Data Book*, in particular pages 2-002 to 2-007. 
 
 ![AM2901-MUXControlSignalTables](https://github.com/jackrarndt/AM2901/blob/main/MP2%20-%20AMD%20AM2901/Additional%20Figures/AM2901-MUXControlSignalTables.png)
+
+### Complementary Logic Schematics
+We begin by building the logic schematics for all the necessary components of the overall system, starting with the MUXes. We will use multiple stages of simple NANDs or NORs, and sometimes, larger complex logic gates like AOIs. **The goal here is to use the least number of transistors**.
+
+There are several basic rules that will keep our circuit design “reasonable” in physical considerations, beyond ensuring the basic Boolean logic functionality. Two will affect our logic gates and one is common sense:
+
+**Rule 1.** *Complementary static CMOS*: Our logic must be composed of logic gates, each consisting of an NMOS network connected to ground and a PMOS network connected to the supply voltage. At any time, either the NMOS or else the PMOS network must be conducting, no matter what inputs are given to the gate. (No transmission gates!)
+**Rule 2.** *Fan-in*: No path from a gate output to power or ground may be more than 3 transistors long. This improves reliability by limiting the body effect near the output node, and also ensures we do not add long chains of bulky transistors.
+**Rule 3.** *Combinational logic only*: Do not introduce feedback loops besides the ones given.
+
+Each logic gate (according to the definition of Rule 1) is to be placed in its own cell. Therefore, gate cells will contain only transistors, and all other cells will contain only sub-cells but no individual transistors, as to maintain the hierarchical structure of the design. Input pins may need to be added to our cells, for example, MUX select inputs. We will write Verilog code to generate these inputs once the schematics are finished. **It is not wise to implement logic to generate a function when one could simply add an input pin!** For example, if we need the complementary signal of pin *p*, instead of adding an inverter in the datapath, we can also choose to add an input pin *p’*. **This way, we can greatly reduce the number of gates in our datapath, which means smaller area for the overall layout!**
+
+### Memory Schematics
+
+
+
 
 
 
