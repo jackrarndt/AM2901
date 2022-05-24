@@ -95,13 +95,19 @@ Our RTL is split into two files:
 
 ### controller.v Control Signals with Boolean Logic Expressions
 ![AM2901-controller_v](https://github.com/jackrarndt/AM2901/blob/main/MP2%20-%20AMD%20AM2901/Additional%20Figures/AM2901-controller_v.png)
-These control signals were created
-
-
-
+The control signals are defined using minimum SOP (i.e. Sum-of-Products) form. The Boolean logic expressions for these control signals were dervied using the AM2901 literature and documentation from the tables shown above. 
 
 ### Logic Verification
+We will use NC-Verilog to run an AM2901 program through our schematics. It is important to check that schematics do the right thing before moving onto layout!
 
+There are three major components to our Verilog code:
+1. “Netlist” code: generated from our schematics
+2. “RTL” code: written by hand and expresses functionality we “know will happen”
+3. “Stimulus” code: drives the input pins according to a test program
+
+**Note:** Debugging latches will be easier if you select *Edit => Preferences* in SimVision, open the preferences for Verilog, and select *Show Strength* and *Show colors by strength*. Signals driven by the bitcell will then appear light blue, so you can see when a latch is being read versus written.
+
+Besides only caring about the falling edges, we also will ignore mismatches on the carry signal when we're not performing addition or subtraction. (The AMD book specifies exactly what the carry signals do under all conditions, but we don't need to be that detailed. We might get different results depending which operands we negate to get each logical function.)
 
 ## Layout
 In MP1, we implemented an 8-bit adder. Similarly, our *bitslice* cell will be implemented as "rows of cells" with data "flowing" from left to right. The height of this structure is the *bit pitch*, and it is a major factor in determining the overall area of the design. Another factor to consider is the length of each row. 
