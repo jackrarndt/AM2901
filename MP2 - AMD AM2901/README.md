@@ -35,10 +35,7 @@ A number of multiplexers allow data to be routed from one component to another. 
 
 ![AM2901-MUXTables](https://github.com/jackrarndt/AM2901/blob/main/MP2%20-%20AMD%20AM2901/Additional%20Figures/AM2901-MUXTables.png)
 
-
-
-
-This section mainly indicates Muxes functions. From this section, we can see that three 3-in Muxes, one 4-in Mux, and one 2-in Mux are needed 4 times in the whole datapath. This means that the datapath consists of four bitslices, each bitslice unit has 5 Muxes: three 3-in Mux, one 4-in Mux, one 2-in Mux. (If we can recall 8-bit adder in MP1, the datapath here is similar to 8-bit adder while the bitslice here is similar to a full adder. 8-bit adder consists of eight full adder unit. Similarly, the datapath here will consist of 4 bitslice unit.)
+From the tables above, we can see that three 3-in MUXes, one 4-in MUX, and one 2-in MUX are needed 4 times in the whole *datapath*. This means that the *datapath* consists of four *bitslices*, each *bitslice* unit has 5 MUXes: three 3-in MUXes, one 4-in MUXes, one 2-in MUXes. Recalling the 8-bit adder in MP1, the *datapath* here is similar to the 8-bit adder while the *bitslice* here is similar to a full adder. An 8-bit adder consists of eight full adder units. Similarly, the *datapath* here will consist of 4 *bitslice* units.
 
 
 
