@@ -35,15 +35,17 @@ A number of multiplexers allow data to be routed from one component to another. 
 
 ![AM2901-MUXInputTables](https://github.com/jackrarndt/AM2901/blob/main/MP2%20-%20AMD%20AM2901/Additional%20Figures/AM2901-MUXInputTables.png)
 
-From the tables above, we can see that three 3-in MUXes, one 4-in MUX, and one 2-in MUX are needed 4 times in the whole *datapath*. This means that the *datapath* consists of four *bitslices*, each *bitslice* unit has 5 MUXes: three 3-in MUXes, one 4-in MUXes, one 2-in MUXes. Recalling the 8-bit adder in MP1, the *datapath* here is similar to the 8-bit adder, while the *bitslice* here is similar to a full adder. An 8-bit adder consists of eight full adder units. Similarly, the *datapath* here will consist of 4 *bitslice* units.
+The plethora of available data routes allowed a team of AM2901’s to perform a computation with the outside assistance of extra chips, then load the result into the Q-Register and send it serially to slower I/O logic while performing the next computation.
+
+The chain of components, which operate on four bits of data is called the *datapath*. Each of these comprises four single-bit components. There are also several individual "decode" blocks, which do not directly handle data. They serve to reduce the number of pins connecting the AM2901 to the outside world. Note that pin count is a **major factor** in the cost of any microchip. In this MP,we will only implement the *datapath*, and leave everything else for MP3. The part of the *datapath* operating on a single bit is called a *bitslice*. We will design and layout a single bitslice, and then combine four *bitslices* to form a complete *datapath*.
+
+From the tables above, we can see that three 3-in MUXes, one 4-in MUX, and one 2-in MUX are needed 4 times in the whole *datapath*, corresponding to four *bitslices*. Therfore, each *bitslice* unit has 5 MUXes: three 3-in MUXes, one 4-in MUXes, one 2-in MUXes. Recalling the 8-bit adder in MP1, the *datapath* here is similar to the 8-bit adder, while the *bitslice* here is similar to a full adder. An 8-bit adder consists of eight full adder units. Similarly, the *datapath* here will consist of 4 *bitslice* units.
 
 **Note:** Additional MUXes might be necessary, for example, inside the *ALU*. 
 
-Finally, the tables listed below (also from AMD) lists the *datapath* functionality controlled by the MUXes in terms of the inputs given. Therefore, we will need to generate MUX control signal inputs from *i<8:0>*. For more information, see *The AM2900 Family Data Book*, in particular pages 2-002 to 2-007. 
+Finally, the tables listed below (also from AMD) lists the *datapath* functionality controlled by the MUXes in terms of the inputs given. Therefore, we will need to generate MUX control signal inputs from *i<8:0>*, which we will derive in the next section. For more information, see *The AM2900 Family Data Book*, in particular pages 2-002 to 2-007. 
 
 ![AM2901-MUXControlSignalTables](https://github.com/jackrarndt/AM2901/blob/main/MP2%20-%20AMD%20AM2901/Additional%20Figures/AM2901-MUXControlSignalTables.png)
-
-
 
 
 
