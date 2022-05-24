@@ -65,16 +65,38 @@ Although complementary CMOS flip-flops and memory arrays are possible, they are 
 Inverter *A* is always driven by inverter *B*. However, if the pass-gate *C* is turned on, it will be driven by both *B* and *C*. This may result in a direct path from power to ground as *B* and *C* form a voltage divider. If *C* has much less resistance than B, however, the voltage divider will always drive *A*’s input close to VDD or ground. Inverter *A*, in turn, sends a perfect VDD-or-ground (*rail-to-rail*) output to *B*, which also flips, shutting off the power-to-ground short circuit. The cross-coupled inverter structure, which we will call a *bitcell*, is at the heart of “static” computer memories.
 
 **Note:** There is an extra rule to follow within the *regfile* and *latch* cells:
-* **Rule 4.** *Drive ratio*: The bitcell must be driven with at least 720 nm effective width to perform a write. To simplify the MP, the sizing has already been done for us. Therfore, what we need to do is the following: First, do not delete the inverters already existing in the given schematic and also do not alter the sizes of them. Second, when we add an inverter to our design, use the a minimum-sized inverter, with W<sub>n</sub> = 0.36 um and W<sub>p</sub> = 0.72 um.
+* **Rule 4.** *Drive ratio*: The bitcell must be driven with at least 720 nm effective width to perform a write. To simplify the MP, the sizing has already been done for us. Therefore, what we need to do is the following: First, do not delete the inverters already existing in the given schematic and also do not alter the sizes of them. Second, when we add an inverter to our design, use the a minimum-sized inverter, with W<sub>n</sub> = 360 nm and W<sub>p</sub> = 720 nm.
 
 Timing is important in any system containing feedback. The *bitcell* cell contains a Verilog delay command that prevents the RAM input from racing through the entire datapath when the transmission gates turn on and off. To take advantage of the delay, we will use one terminal of the bitcell as an input and the other as an output. 
 
 As for the clock inputs of RAM and also Q register, the following is quoted from *The AM2900 Family Data Book*. *"The Q register and register stack outputs change on the clock LOW-to-HIGH transition. The clock LOW time is internally the write enable to the 16x4 RAM which compromises the master latches of the register stack. While the clock is LOW, the slave latches on the RAM outputs are closed, storing the data previously on the RAM outputs. This allows synchronous master-slave operation of the register stack."* To put it simply, the master latches of both RAM and Q register should be open at clock LOW, while the slave latches should be open at clock HIGH.
 
-
 ### Carry Chain
+Inside of the ALU, we use a carry chain, which violates a couple rules to improve area and performance. It is similar to the Manchester carry chain, except it replaces the dynamic clock input with a static “kill” input. Each stage of the chain works as follows:
+1. Carry-out is always connected to VDD, GND, or carry-in (static pass-transistor logic)
+2. Carry-out connects to VDD if a=b=1 (generate = a AND b)
+3. Carry-out connects to GND if a=b=0 (kill = a NOR b)
+4. Otherwise, carry-out connects to carry-in through a transmission gate (propagate = a XOR b)
+
+Two of our style rules are broken, so we can ignore them as a special case:
+1. The chain is four transmission gates long. Including one transistor driving the carry-in pin outside the chip, this is a fan-in of five. Our rule limits fan-in to three.
+2. The generate, kill, propagate, and negative propagate signals all go into the carry stage. A glitch or transient short circuit may occur, for example, if the propagate XOR turns off slowly while the generate NAND turns on quickly. Usually we avoid such situations by using fully complementary static CMOS, as explained earlier. The performance gain is worth the small cost in power in this case.
 
 ### RTL Code
+Besides the datapath structures, the AM2901 block diagram shown above also shows other components such as those labeled “decode.” Although not all are related to each other, these blocks are collectively known as the *control unit*. Since performance is generally measured in terms of the time between operands going into the datapath and results coming out, and since these structures will only appear once in the final layout (contrast with the bitslice being copied four times), **we will not manually optimize the control unit**. We need only to specify its functionality in Verilog. This Verilog will automatically be converted to working layout in MP3.
+
+The style of Verilog we will write is called *RTL code*. This stands for “register transfer language.” Although our code contains no registers, it is a common term referring to anything that describes desired functionality regardless of the exact implementation.
+
+The datapath will be most efficient if kept small, using the minimum number of transistors. Wherever possible, **it is encouraged to keep functionality out of the datapath and inside the control unit**. In particular, it is wasteful to decode every instruction word *i<8:0>* using identical transistors in each bitslice of the datapath.
+
+Our RTL is split into two files:
+* *controller.v*: describes the control unit
+* *Am2901.v*: integrates the datapath with the control unit
+
+### RTL Code Boolean Logic Derivations
+
+
+
 
 ### Logic Verification
 
