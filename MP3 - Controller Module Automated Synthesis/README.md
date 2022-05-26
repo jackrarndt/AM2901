@@ -9,14 +9,21 @@ In this machine problem, we will use automated tools to synthesize the controlle
 | Cell Design | Knows every instance of how every cell will be used, and design for one process. | Our MOSIS-based cell library is generalized for many manufacturers and for ease of use to tools. |
 | Integration & Routing | Ability to discover physical realities, learn, and revise. | Designed for speed and generality. Placement is a best guess; routing cannot modify placement. |
 
+Highlighted in the table above are key differences between manual and automatic circuit implementations. 
 
+The datapath we created in MP2 optimizes every transistor for optimum efficiency within the well-defined and detailed constraints of the datapath topology and the TSMC process design rules. As we translated the logic specifications to schematics, we applied our full knowledge of logic optimization to improve our overall design. However, our automated tools cannot adapt to the specific task of designing an AM2901, as they are designed to solve the most general problem of circuit design. 
 
-
+A purely automated approach cannot approach human thoroughness, critical thought, and ingenuity, but it is much less work.
 
 ## MP3 Files
 * *ece425mp3.zip*, *ece425mp3oa.zip*, and *ece425mp3top.zip* contain the associated Cadence Virtuoso design files for MP3.
 * *mp3_jrarndt2.pdf* constitutes the MP3 Report submission.
 * *MP3-SP22* is the provided MP3 documentation. 
+
+
+![controller_layout](https://github.com/jackrarndt/AM2901/blob/main/MP3%20-%20Controller%20Module%20Automated%20Synthesis/Additional%20Figures/controller_layout.png)
+
+![AM2901_Layout](https://github.com/jackrarndt/AM2901/blob/main/MP3%20-%20Controller%20Module%20Automated%20Synthesis/Additional%20Figures/am2901_layout.png)
 
 
 
