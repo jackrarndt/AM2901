@@ -93,7 +93,7 @@ Our RTL is split into two files:
 * *controller.v*: describes the control unit
 * *Am2901.v*: integrates the datapath with the control unit
 
-### controller.v Code Snippet Defining Control Signals with Boolean Logic Expressions
+### *controller.v* Code Snippet Defining Control Signals with Boolean Logic Expressions
 ```
 // add your control signals here...
 
@@ -132,7 +132,6 @@ assign inv_y_output_sel = ~y_output_sel;
 //end
 endmodule
 ```
-
 The control signals are defined using minimum SOP (i.e. Sum-of-Products) form. The Boolean logic expressions for these control signals were dervied using the AM2901 literature and documentation from the tables shown above. 
 
 ### Logic Verification
