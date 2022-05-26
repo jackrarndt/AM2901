@@ -5,7 +5,7 @@ In this machine problem, we will use automated tools to synthesize the controlle
 ## Manual vs. Automatic Circuit Implementation
 | Task | Human Engineer | Design Automation Tools |
 | ---- | -------------- | ----------------------- |                   
-| Logic Optimization | Full & extensive knowledge of Boolean Algebra; Ability to go back and change the overall topology. | Incremental optimization based on initial specification + “Guess and check. Final results based on initial approximation. |
+| Logic Optimization | Full knowledge of Boolean Algebra; Ability to go back and change the overall topology. | Incremental optimization based on initial specification + “Guess and check." Final results based on initial approximation. |
 | Cell Design | Knows every instance of how every cell will be used, and design for one process. | Our MOSIS-based cell library is generalized for many manufacturers and for ease of use to tools. |
 | Integration & Routing | Ability to discover physical realities, learn, and revise. | Designed for speed and generality. Placement is a best guess; routing cannot modify placement. |
 
