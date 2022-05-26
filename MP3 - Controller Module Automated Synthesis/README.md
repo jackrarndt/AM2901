@@ -20,9 +20,10 @@ A purely automated approach cannot approach human thoroughness, critical thought
 * *mp3_jrarndt2.pdf* constitutes the MP3 Report submission.
 * *MP3-SP22* is the provided MP3 documentation. 
 
-
+## Cadence Encounter Generated Controller Layout
 ![controller_layout](https://github.com/jackrarndt/AM2901/blob/main/MP3%20-%20Controller%20Module%20Automated%20Synthesis/Additional%20Figures/controller_layout.png)
 
+## Complete AM2901 Layout (with *controller* and *datapath*)
 ![AM2901_Layout](https://github.com/jackrarndt/AM2901/blob/main/MP3%20-%20Controller%20Module%20Automated%20Synthesis/Additional%20Figures/am2901_layout.png)
 
 
