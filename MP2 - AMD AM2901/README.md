@@ -93,8 +93,46 @@ Our RTL is split into two files:
 * *controller.v*: describes the control unit
 * *Am2901.v*: integrates the datapath with the control unit
 
-### controller.v Control Signals with Boolean Logic Expressions
-![AM2901-controller_v](https://github.com/jackrarndt/AM2901/blob/main/MP2%20-%20AMD%20AM2901/Additional%20Figures/AM2901-controller_v.png)
+### controller.v Code Snippet Defining Control Signals with Boolean Logic Expressions
+```
+// add your control signals here...
+
+// RAM Function Control
+assign reg_wr = i[8] | i[7];
+assign ram_data[1] = i[8] & (~i[7]); // shift_right
+assign ram_data[0] = i[8] & i[7]; // shift_left  
+assign inv_ram_data = ~ram_data;  
+
+// Q-Register Function Control 
+assign q_en = ((~i[8]) & (~i[7]) & (~i[6])) | (i[8] & (~i[7]) & (~i[6])) | (i[8] & i[7] & (~i[6]));
+assign q_reg_data[1] = i[8] & (~i[7]) & (~i[6]); 
+assign q_reg_data[0] = i[8] & i[7] & (~i[6]);
+assign inv_q_reg_data = ~q_reg_data;
+
+// ALU Source Operand Control 
+assign alu_r[1] = ((i[2]) & (~i[1]) & (~i[0])) | ((~i[2]) & i[1]); 
+assign alu_r[0] = (i[2] & (~i[1]) & (~i[0])) | (~i[2]);
+assign inv_alu_r = ~alu_r; 
+assign alu_s[1] = (i[2] & i[1] & i[0]) | ((~i[2]) & i[0]);
+assign alu_s[0] = (i[2] & (~i[1])) | (i[2] & i[1] & i[0]); 
+assign inv_alu_s = ~alu_s;
+
+// ALU Function Control
+assign inv_r = (~i[4]) & i[3];
+assign inv_s = (~i[5]) & i[4] & (~i[3]);
+assign alu_op[2] = i[3];
+assign alu_op[1] = i[5];
+assign alu_op[0] = ((~i[5]) & i[4] & i[3]) | (i[5] & i[4]); 
+assign inv_alu_op[1:0] = ~alu_op[1:0]; 
+
+// Y Output Select Control
+assign y_output_sel = (~i[8]) & i[7] & (~i[6]);  
+assign inv_y_output_sel = ~y_output_sel; 
+ 
+//end
+endmodule
+```
+
 The control signals are defined using minimum SOP (i.e. Sum-of-Products) form. The Boolean logic expressions for these control signals were dervied using the AM2901 literature and documentation from the tables shown above. 
 
 ### Logic Verification
@@ -141,7 +179,7 @@ The MP2 Checkpoint is organized in the following order:
     * *latch*
     * *ALU*
     * *logic* part of ALU
-2. List the *eight* ALU functions and explain how you implmented each of them. 
+2. List the *eight* ALU functions and explain how you implemented each of them. 
 3. Top-Level Schematic Printouts
     * *bitslice*
     * *datapath*
