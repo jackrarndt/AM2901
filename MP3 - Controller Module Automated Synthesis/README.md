@@ -26,9 +26,6 @@ A purely automated approach cannot approach human thoroughness, critical thought
 ## Complete AM2901 Layout (with *controller* and *datapath*)
 ![AM2901_Layout](https://github.com/jackrarndt/AM2901/blob/main/MP3%20-%20Controller%20Module%20Automated%20Synthesis/Additional%20Figures/am2901_layout.png)
 
-
-
-
 ## MP3 Report
 The MP3 Report is organized in the following order:
 
@@ -41,5 +38,12 @@ The MP3 Report is organized in the following order:
     * Top-Level (complete AM2901 with controller and datapath) layout with Metal 3 only. (Include Metal 3 & 4 if metal 4 was used with MP3)
     * Use ruler to measure the height and width, and **calculate the total layout area**. 
 
-## MP3 Extra Credit
+## *MP3 Extra Credit*
+In MP2 and MP3, we have designed a microprocessor layout in Cadence Virtuoso, including the *datapath* and the *controller*. However, this layout did not have a pad frame to read out voltages or provide power supply to chip components. Therefore, this layout, even though complete, cannot be sent out for fabrication. Therefore, in this extra credit opportunity, we will add a pad frame to the microprocessor layout, so that the chip components could have connections off chip to facilitate its fabrication and use it as a system component. Also, we will use what we've learned from the HSPICE lecture to measure the power consumption of your microprocessor.
+
+### Pad Frame
+![am2901-padframe_layout](https://github.com/jackrarndt/AM2901/blob/main/MP3%20-%20Controller%20Module%20Automated%20Synthesis/Additional%20Figures/MP3%20Extra%20Credit/am2901-padframe_layout.pdf)
+
+### Power Consumption Measurement
+Low power design is a necessity today in all integrated circuits. Now let’s see how much power our microprocessor would take. We will use HSPICE here to do the measurement, as it is a robust industry standard.
 
