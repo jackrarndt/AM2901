@@ -97,22 +97,23 @@ Our RTL is split into two files:
 ```
 // add your control signals here...
 
-// RAM Function Control
+// RAM Function Control (f = 00, f_left = 01, f_right = 10)
 assign reg_wr = i[8] | i[7];
 assign ram_data[1] = i[8] & (~i[7]); // shift_right
 assign ram_data[0] = i[8] & i[7]; // shift_left  
 assign inv_ram_data = ~ram_data;  
 
-// Q-Register Function Control 
+// Q-Register Function Control (f = 00, q_left = 01, q_right = 10)
 assign q_en = ((~i[8]) & (~i[7]) & (~i[6])) | (i[8] & (~i[7]) & (~i[6])) | (i[8] & i[7] & (~i[6]));
 assign q_reg_data[1] = i[8] & (~i[7]) & (~i[6]); 
 assign q_reg_data[0] = i[8] & i[7] & (~i[6]);
 assign inv_q_reg_data = ~q_reg_data;
 
-// ALU Source Operand Control 
+// ALU Source Operand Control (d = 00, data_a = 01, "0" = 10)
 assign alu_r[1] = ((i[2]) & (~i[1]) & (~i[0])) | ((~i[2]) & i[1]); 
 assign alu_r[0] = (i[2] & (~i[1]) & (~i[0])) | (~i[2]);
 assign inv_alu_r = ~alu_r; 
+// (q = 00, data_a = 01, data_b = 10, "0" = 11)
 assign alu_s[1] = (i[2] & i[1] & i[0]) | ((~i[2]) & i[0]);
 assign alu_s[0] = (i[2] & (~i[1])) | (i[2] & i[1] & i[0]); 
 assign inv_alu_s = ~alu_s;
@@ -125,7 +126,7 @@ assign alu_op[1] = i[5];
 assign alu_op[0] = ((~i[5]) & i[4] & i[3]) | (i[5] & i[4]); 
 assign inv_alu_op[1:0] = ~alu_op[1:0]; 
 
-// Y Output Select Control
+// Y Output Select Control (f = 00, data_a = 01)
 assign y_output_sel = (~i[8]) & i[7] & (~i[6]);  
 assign inv_y_output_sel = ~y_output_sel; 
  
